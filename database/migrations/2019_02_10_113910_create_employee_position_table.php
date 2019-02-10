@@ -17,9 +17,9 @@ class CreateEmployeePositionTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('emp_dept_id');
             $table->foreign('emp_dept_id')
-                  ->references('id')->on('employee_position')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+                ->references('id')->on('employee_dept')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('emp_position_name');
             $table->string('emp_position_code');
             $table->string('branch_code');

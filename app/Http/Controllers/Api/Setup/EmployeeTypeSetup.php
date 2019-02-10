@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Setup;
 
-use App\Models\EmployeeType;
+use App\EmployeeType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -68,7 +68,7 @@ class EmployeeTypeSetup extends Controller
         
     }
 
-    public function deleteEmployeeType(Request $request, $id)
+    public function deleteEmployeeType($id)
     {
     	$empType = EmployeeType::find($id);
 

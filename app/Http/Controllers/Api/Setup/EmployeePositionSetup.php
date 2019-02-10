@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Setup;
 
-use App\Models\EmployeePosition;
+use App\EmployeePosition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -57,7 +57,7 @@ class EmployeePositionSetup extends Controller
         $empPos->emp_position_code = $request->input('emp_position_code');
         $empPos->branch_code       = $request->input('branch_code');
         $empPos->school_code       = $request->input('school_code');
-        //$empPos->emp_dept_id       = $request->input('emp_dept_id');
+        $empPos->emp_dept_id       = $request->input('emp_dept_id');
         $empPos->raw               = $request->input('raw');
             
         if($empPos->save()){
@@ -67,10 +67,9 @@ class EmployeePositionSetup extends Controller
         }
 
         return response()->json($empPos);
-        
     }
 
-    public function deleteEmployeePosition(Request $request, $id)
+    public function deleteEmployeePosition($id)
     {
     	$empPos = EmployeePosition::find($id);
 

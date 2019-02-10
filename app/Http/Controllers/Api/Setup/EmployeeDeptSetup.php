@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Setup;
 
-use App\Models\EmployeeDept;
+use App\EmployeeDept;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -68,7 +68,7 @@ class EmployeeDeptSetup extends Controller
         
     }
 
-    public function deleteEmployeeDept(Request $request, $id)
+    public function deleteEmployeeDept($id)
     {
     	$empDept = EmployeeDept::find($id);
 
