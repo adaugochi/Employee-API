@@ -1,29 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Api\Setup;
+namespace App\Http\GeneralService\Configurations;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\EmployeeType;
 
-
-class EmployeeTypeSetup extends Controller
+class EmployeeTypeSetup
 {
-    public function getEmployeeType()
+    public static function getEmployeeType()
     {
-        $empTypes = EmployeeType::all();
-    	return response()->json($empTypes, 200);
+        return EmployeeType::all();
     }
 
-    public function addEmployeeType(Request $request)
+    public static function addEmployeeType(Request $request)
     {
-        $this->validate($request, [
-        	'emp_type_name' => 'required',
-        	'emp_type_code' => 'required',
-        	'branch_code'   => 'required',
-        	'school_code'   => 'required'
-        ]);
-
         $empType = new EmployeeType;
 
         $empType->emp_type_name = $request->input('emp_type_name');
@@ -37,20 +27,11 @@ class EmployeeTypeSetup extends Controller
         }else{
             return ['status' => false, 'message' => 'Error occurred while adding new employee type!'];
         }
-
-        return response()->json($empType, 200);
     }
 
-    public function updateEmployeeType(Request $request, $id)
+    public static function updateEmployeeType(Request $request)
     {
-        $this->validate($request, [
-        	'emp_type_name' => 'required',
-        	'emp_type_code' => 'required',
-        	'branch_code'   => 'required',
-        	'school_code'   => 'required'
-        ]);
-
-        $empType = EmployeeType::find($id);
+        $empType = EmployeeType::find($request->input('id'));
 
         $empType->emp_type_name = $request->input('emp_type_name');
         $empType->emp_type_code = $request->input('emp_type_code');
@@ -63,20 +44,6 @@ class EmployeeTypeSetup extends Controller
         }else{
             return ['status' => false, 'message' => 'Error occurred while updating existing employee type!'];
         }
-
-        return response()->json($empType, 200);
     }
 
-    public function deleteEmployeeType($id)
-    {
-    	$empType = EmployeeType::find($id);
-
-    	$response = $empType->delete();
-
-    	if($response){
-            return ['status' => true, 'message' => 'Employee type deleted successfully!'];
-        }else{
-            return ['status' => false, 'message' => 'Error occurred while deleting employee type!'];
-        }
-    }
 }

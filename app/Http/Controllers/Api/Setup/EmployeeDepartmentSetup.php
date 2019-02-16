@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api\Setup;
 
-use App\EmployeeDept;
+use App\EmployeeDepartment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EmployeeDeptSetup extends Controller
+class EmployeeDepartmentSetup extends Controller
 {
     public function getEmployeeDept()
     {
-    	$models = EmployeeDept::all();
+    	$models = EmployeeDepartment::all();
     	return response()->json($models);
     }
 
@@ -23,7 +23,7 @@ class EmployeeDeptSetup extends Controller
         	'school_code'   => 'required'
         ]);
           
-        $empDept = new EmployeeDept;
+        $empDept = new EmployeeDepartment;
 
         $empDept->emp_dept_name = $request->input('emp_dept_name');
         $empDept->emp_dept_code = $request->input('emp_dept_code');
@@ -50,7 +50,7 @@ class EmployeeDeptSetup extends Controller
         	'school_code'   => 'required'
         ]);
           
-        $empDept = EmployeeDept::find($id);
+        $empDept = EmployeeDepartment::find($id);
 
         $empDept->emp_dept_name = $request->input('emp_dept_name');
         $empDept->emp_dept_code = $request->input('emp_dept_code');
@@ -70,7 +70,7 @@ class EmployeeDeptSetup extends Controller
 
     public function deleteEmployeeDept($id)
     {
-    	$empDept = EmployeeDept::find($id);
+    	$empDept = EmployeeDepartment::find($id);
 
     	$response = $empDept->delete();
 

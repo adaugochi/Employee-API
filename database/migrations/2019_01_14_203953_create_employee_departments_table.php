@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeeTypeTable extends Migration
+class CreateEmployeeDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEmployeeTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_type', function (Blueprint $table) {
+        Schema::create('employee_departments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('emp_type_name');
-            $table->string('emp_type_code');
+            $table->string('emp_dept_name');
+            $table->string('emp_dept_code');
             $table->string('branch_code');
             $table->string('school_code');
             $table->text('raw')->nullable();
@@ -31,6 +31,6 @@ class CreateEmployeeTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_type');
+        Schema::dropIfExists('employee_departments');
     }
 }
